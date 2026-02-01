@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L1ghTMod 验证服务器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+        }
+        .logo {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .status {
+            margin-top: 30px;
+            padding: 20px 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .info {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🔒</div>
+        <h1>L1ghTMod 验证服务器</h1>
+        <p>在线验证系统运行中</p>
+        
+        <div class="status">
+            <div class="status-indicator">
+                <span class="dot"></span>
+                <span>验证服务正常运行</span>
+            </div>
+        </div>
+        
+        <div class="info">
+            <p>验证API: <code>/verified-servers.json</code></p>
+            <p id="server-count">已授权服务器: 加载中...</p>
+        </div>
+    </div>
+
+    <script>
+        // 显示已授权服务器数量
+        fetch('verified-servers.json')
+            .then(r => r.json())
+            .then(data => {
+                const count = data.servers.filter(s => s.enabled).length;
+                document.getElementById('server-count').textContent = `已授权服务器: ${count} 台`;
+            })
+            .catch(() => {
+                document.getElementById('server-count').textContent = '已授权服务器: 数据加载失败';
+            });
+    </script>
+</body>
+</html>

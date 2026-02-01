@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2024-01-01T00:00:00Z",
+  "servers": [
+    {
+      "id": "server-001",
+      "name": "示例服务器1",
+      "ip": "127.0.0.1",
+      "port": "25565",
+      "serverKey": "your-secret-key-here",
+      "enabled": true,
+      "expiresAt": "2099-12-31T23:59:59Z"
+    }
+  ]
+}
