@@ -86,14 +86,27 @@
 
     <script>
         // 显示已授权服务器数量
-        fetch('verified-servers.json')
-            .then(r => r.json())
-            .then(data => {
-                const count = data.servers.filter(s => s.enabled).length;
-                document.getElementById('server-count').textContent = `已授权服务器: ${count} 台`;
+        // 使用相对路径，自动适应当前域名和路径
+        const jsonUrl = window.location.pathname.endsWith('/') 
+            ? 'verified-servers.json' 
+            : window.location.pathname + '/verified-servers.json';
+        
+        fetch(jsonUrl)
+            .then(r => {
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.json();
             })
-            .catch(() => {
-                document.getElementById('server-count').textContent = '已授权服务器: 数据加载失败';
+            .then(data => {
+                if (data.servers && Array.isArray(data.servers)) {
+                    const count = data.servers.filter(s => s.enabled).length;
+                    document.getElementById('server-count').textContent = `已授权服务器: ${count} 台`;
+                } else {
+                    document.getElementById('server-count').textContent = '已授权服务器: 数据格式错误';
+                }
+            })
+            .catch((e) => {
+                console.error('加载失败:', e);
+                document.getElementById('server-count').textContent = '已授权服务器: 数据加载失败 (请检查文件是否存在)';
             });
     </script>
 </body>
