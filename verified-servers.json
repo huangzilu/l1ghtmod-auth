@@ -28,9 +28,9 @@
       "serverKey": "2e8281a3-e0e4-ae1e-3999-47aa58cd5ef2",
       "enabled": true,
       "expiresAt": "2099-12-31T23:59:59Z"
-    }
+    },
     {
-      "id": "server-003",
+      "id": "server-004",
       "name": "单人",
       "ip": "127.0.0.1",
       "port": "*",
