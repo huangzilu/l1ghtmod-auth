@@ -23,7 +23,7 @@
     {
       "id": "server-003",
       "name": "旅者3",
-      "ip": "112.17.187.18",
+      "ip": "192.168.5.37",
       "port": "7921",
       "serverKey": "2e8281a3-e0e4-ae1e-3999-47aa58cd5ef2",
       "enabled": true,
