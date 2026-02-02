@@ -5,7 +5,7 @@
     {
       "id": "server-001",
       "name": "示例服务器1",
-      "ip": "127.0.0.1",
+      "ip": "localhost",
       "port": "25565",
       "serverKey": "2e8281a3-e0e4-ae1e-3999-47aa58cd5ef2",
       "enabled": true,
